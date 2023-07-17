@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>API Project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
 </head>
 
 <body>
-    <div class="container">	
-        <div class="user-container"></div>	
-        <div class="quote-container"></div>	
-        <div class="content-container">	
-            <div class="pokemon-container"></div>	
-            <div class="meat-container"></div>	
-        </div>	
-        <div class="friends">	
-            <h4>Friends</h4>	
-            <div class="friends-container">	
-            </div>	
-        </div>	
-        <div class="buttons">	
-            <button>Load User Data</button>	
-            <button>Display User</button>	
-        </div>	
+<script id="user-template" type="text/x-handlebars-template">
+    <div class="user-info">
+        <img id="profile-pic" src="{{picture}}">
+        <div class="user-info">
+            <p>{{firstName}} {{lastName}}</p>
+            <p>{{city}}, {{state}}</p>
+        </div>
     </div>
+</script>
+
+<script id="pokemon-template" type="text/x-handlebars-template">
+    <img id="pokemon-image" src="{{picture}}">
+    <div id="pokemon-text">Favorite pokemon: {{name}}</div>
+</script>
+
+<div class="container">
+    <div class="user-container"></div>
+    <div class="quote-container"></div>
+    <div class="content-container">
+        <div class="pokemon-container"></div>
+        <div class="meat-container"></div>
+    </div>
+    <div class="friends">
+        <h4>Friends</h4>
+        <div class="friends-container"></div>
+    </div>
+    <div class="buttons">
+        <button id="generate-user-btn">Generate User</button>
+        <button id="save-user-btn">Save User Page</button>
+        <button id="load-user-btn">Load User Page</button>
+    </div>
+</div>
 </body>
 
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script src="Renderer.js"></script>
+<script src="APIManager.js"></script>
+<script src="main.js"></script>
 </html>
