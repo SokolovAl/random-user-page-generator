@@ -26,6 +26,14 @@
     <div id="pokemon-text">Favorite pokemon: {{name}}</div>
 </script>
 
+<script id="friends-template" type="text/x-handlebars-template">
+    <ul>
+        {{#each friends}}
+            <li>{{firstName}} {{lastName}}</li>
+        {{/each}}
+    </ul>
+</script>
+
 <div class="container">
     <div class="user-container"></div>
     <div class="quote-container"></div>

@@ -4,6 +4,8 @@ class Renderer {
         this.userTemplate = Handlebars.compile(this.userSource);
         this.pokemonSource = $("#pokemon-template").html();
         this.pokemonTemplate = Handlebars.compile(this.pokemonSource);
+        this.friendsSource = $("#friends-template").html();
+        this.friendsTemplate = Handlebars.compile(this.friendsSource);
     }
 
     renderUser(user) {
@@ -14,11 +16,8 @@ class Renderer {
 
     renderFriends(friends) {
         const friendsContainer = $(".friends-container");
-        friendsContainer.empty();
-        friends.forEach(friend => {
-            const friendHtml = `<br><p>${friend.firstName} ${friend.lastName}</p>`;
-            friendsContainer.append(friendHtml);
-        });
+        const friendsHtml = this.friendsTemplate({ friends });
+        friendsContainer.html(friendsHtml);
     }
 
     renderQuote(quote) {
