@@ -4,9 +4,11 @@ class APIManager {
     }
 
     fetchRandomUsers() {
-        const randomUserApiUrl = "https://randomuser.me/api/?results=7";
+        const randomUserApiUrl = "https://randomuser.me/api/?results=";
+        const numberOfUsers = 7;
+        const completeRandomUserApiUrl = randomUserApiUrl + numberOfUsers;
 
-        return fetch(randomUserApiUrl)
+        return fetch(completeRandomUserApiUrl)
             .then(response => response.json())
             .then(data => {
                 const users = data.results;
