@@ -45,4 +45,10 @@ class Renderer {
         meatContainer.append(meatText);
         meatContainer.addClass("meat-text");
     }
+
+    renderPokemonGif(gifUrl) {
+        const pokemonGifContainer = $(".pokemon-gif-container");
+        const iframeHtml = `<iframe src="${gifUrl}" width="100" height="100"></iframe>`;
+        pokemonGifContainer.html(iframeHtml);
+    }
 }

@@ -13,11 +13,15 @@ function updateUserData() {
            .then(() => {
                apiManager.data.pokemon.name = capitalize(apiManager.data.pokemon.name);
 
+               return apiManager.fetchPokemonGif(apiManager.data.pokemon.name);
+           })
+           .then(() => {
                renderer.renderUser(apiManager.data.mainUser);
                renderer.renderFriends(apiManager.data.friends);
                renderer.renderQuote(apiManager.data.quote);
                renderer.renderPokemon(apiManager.data.pokemon);
                renderer.renderMeat(apiManager.data.meatText);
+               renderer.renderPokemonGif(apiManager.data.pokemonGif);
            })
            .catch(error => console.error("Error", error));
 }
@@ -65,6 +69,7 @@ function loadUserPageDataById(userId) {
         renderer.renderQuote(apiManager.data.quote);
         renderer.renderPokemon(apiManager.data.pokemon);
         renderer.renderMeat(apiManager.data.meatText);
+        renderer.renderPokemonGif(apiManager.data.pokemonGif);
 
         alert("User page loaded successfully!");
     } else {

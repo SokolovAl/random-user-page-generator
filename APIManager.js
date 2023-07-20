@@ -62,4 +62,25 @@ class APIManager {
                 this.data.meatText = data[0];
             });
     }
+
+    fetchPokemonGif(pokemonName) {
+        const MY_API_KEY = "R8EOFm8OBCRU1y5UxTd9NMlpTqM977LG"
+        const gifApiUrl = `https://api.giphy.com/v1/gifs/search?q=${pokemonName}&api_key=${MY_API_KEY}&output=embed`;
+
+        return fetch(gifApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const gifData = data.data[0];
+                if (gifData && gifData.images && gifData.images.original && gifData.images.original.url) {
+                    this.data.pokemonGif = gifData.images.original.url;
+                } else {
+                    this.data.pokemonGif = null;
+                    alert("Sorry we can't find pokemon gif")
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching Pokemon gif:", error);
+                this.data.pokemonGif = null;
+            });
+    }
 }
