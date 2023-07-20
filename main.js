@@ -11,6 +11,12 @@ function updateUserData() {
         apiManager.fetchMeatText()
     ])
            .then(() => {
+               apiManager.fetchPokemonType(apiManager.data.pokemon.name)
+                         .then(() => {
+                             const bgColor = getColorForPokemonType(apiManager.data.pokemonType);
+                             changeBackgroundColor(bgColor);
+                         });
+
                apiManager.data.pokemon.name = capitalize(apiManager.data.pokemon.name);
 
                return apiManager.fetchPokemonGif(apiManager.data.pokemon.name);
@@ -24,6 +30,22 @@ function updateUserData() {
                renderer.renderPokemonGif(apiManager.data.pokemonGif);
            })
            .catch(error => console.error("Error", error));
+}
+
+function getColorForPokemonType(type) {
+    const colorMap = {
+        "normal": "#a8a878",
+        "fire": "#f08030",
+        "water": "#6890f0",
+        "grass": "#78c850",
+        "electric": "#f8d030"
+    };
+
+    return colorMap[type] || "#ffffff";
+}
+
+function changeBackgroundColor(color) {
+    document.body.style.backgroundColor = color;
 }
 
 function saveUserPageData() {
@@ -79,6 +101,7 @@ function loadUserPageDataById(userId) {
 
 loadSavedUsersList();
 updateUserData();
+changeBackgroundColor();
 
 const generateUserButton = document.getElementById("generate-user-btn");
 generateUserButton.addEventListener("click", updateUserData);

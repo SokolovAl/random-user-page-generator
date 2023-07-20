@@ -83,4 +83,15 @@ class APIManager {
                 this.data.pokemonGif = null;
             });
     }
+
+    fetchPokemonType(pokemonName) {
+        const pokemonApiUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`;
+
+        return fetch(pokemonApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const types = data.types.map(typeData => typeData.type.name);
+                this.data.pokemonType = types.join(", ");
+            });
+    }
 }
