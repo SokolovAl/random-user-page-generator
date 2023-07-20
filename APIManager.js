@@ -90,8 +90,8 @@ class APIManager {
         return fetch(pokemonApiUrl)
             .then(response => response.json())
             .then(data => {
-                const types = data.types.map(typeData => typeData.type.name);
-                this.data.pokemonType = types.join(", ");
+                const firstType = data.types[0].type.name;
+                this.data.pokemonType = firstType;
             });
     }
 }
