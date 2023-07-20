@@ -71,8 +71,8 @@ class APIManager {
             .then(response => response.json())
             .then(data => {
                 const gifData = data.data[0];
-                if (gifData && gifData.images && gifData.images.original && gifData.images.original.url) {
-                    this.data.pokemonGif = gifData.images.original.url;
+                if (gifData) {
+                    this.data.pokemonGif = gifData.embed_url;
                 } else {
                     this.data.pokemonGif = null;
                     alert("Sorry we can't find pokemon gif")
